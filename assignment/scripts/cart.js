@@ -27,10 +27,17 @@ console.log('Adding peaches (expect true)', addItem('peaches'));
 listItems(basket);
 console.log(`Basket is now ${basket}`);
 
-function empty(){ //generalizing for arrays other than basket
+function empty(){
   basket = [];
   return false;
 }
+
+// I tried to create a generalized empty function for a given array:
+// function empty(basketArray){
+//  basketArray = [];
+//  return false;
+// }
+// However, this didn't work when I called empty(basket)
 
 console.log('Emptying the basket (expect false)', empty());
 console.log(`Basket is now ${basket}`);
@@ -54,5 +61,22 @@ function isFull(basketArray) {
 console.log('Testing isFull with 3 items, should be false', isFull(basket));
 console.log('Adding pita chips (expect true)', addItem('pita chips'));
 console.log('Adding salad (expect true)', addItem('salad'));
+console.log(`Basket is now ${basket}`);
 console.log('Testing isFull with 5 items, should be true', isFull(basket));
 console.log('Adding salsa (expect false)', addItem('salsa')); // testing isFull condition in addItems
+
+// Creative removeItem with array methods
+
+function removeItem(array, item) { // I tested with one argument, then generalized
+//  itemIndex = basket.indexOf(item); // intermediate step, putting directly into splice
+  console.log('Found and removed', item, 'at index', array.indexOf(item));
+  return array.splice(array.indexOf(item), 1);
+}
+
+//Testing removeItem
+
+removeItem(basket, 'pita chips');
+console.log(`Basket is now ${basket}`);
+removeItem(basket, 'sriracha');
+console.log(`Basket is now ${basket}`);
+listItems(basket);
