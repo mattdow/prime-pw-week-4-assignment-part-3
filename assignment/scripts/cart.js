@@ -68,9 +68,12 @@ console.log('Adding salsa (expect false)', addItem('salsa')); // testing isFull 
 // Creative removeItem with array methods
 
 function removeItem(array, item) { // I tested with one argument, then generalized
-//  itemIndex = basket.indexOf(item); // intermediate step, putting directly into splice
+  if (array.indexOf(item) === -1) { // Check to ensure item is in the list, indexOf will be -1 if not
+    console.log('Item', item, 'not found in', array, 'at any index.');
+    return array; // if item can't be found in array, function should return original array.
+  }
   console.log('Found and removed', item, 'at index', array.indexOf(item));
-  return array.splice(array.indexOf(item), 1);
+  return array.splice(array.indexOf(item), 1); 
 }
 
 //Testing removeItem
@@ -80,3 +83,5 @@ console.log(`Basket is now ${basket}`);
 removeItem(basket, 'sriracha');
 console.log(`Basket is now ${basket}`);
 listItems(basket);
+removeItem(basket, 'sracha');
+console.log(`Basket is now ${basket}`);
